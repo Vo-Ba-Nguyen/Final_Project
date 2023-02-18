@@ -67,12 +67,11 @@
                                         </template>
                                     </td>
                                     <td>
-                                        <template v-if="value.is_open">
-                                            <button class="btn btn-primary" style="width: 150px">Hoạt Động</button>
-                                        </template>
-                                        <template v-else>
-                                            <button class="btn btn-danger" style="width: 150px">Tạm Tắt</button>
-                                        </template>
+
+                                            <button v-on:click='statusChange(value)' class="btn btn-primary" v-if="value.is_open" style="width: 150px">Hoạt Động</button>
+
+                                            <button v-on:click='statusChange(value)' class="btn btn-danger" v-else style="width: 150px">Tạm Tắt</button>
+
                                     </td>
                                     <th>
                                         <button class="btn btn-success" data-bs-toggle="modal" v-on:click="update_danh_muc = value" data-bs-target="#updateModal">Update</button>
@@ -197,6 +196,14 @@
                             } else {
                                 toastr.error("Có Lỗi vui lòng kiểm tra lại!")
                             }
+                        });
+                },
+                statusChange(v){
+                    axios
+                        .post("/admin/danh-muc/statusChange/", v)
+                        .then((res) => {
+                            toastr.success("Chuyển trạng thái thành công!")
+                            this.loadData();
                         });
                 },
             },

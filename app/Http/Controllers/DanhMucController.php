@@ -52,5 +52,18 @@ class DanhMucController extends Controller
             'status' => true,
         ]);
     }
+    public function statusChange(Request $request){
+        $status = DanhMuc::where('id', $request->id)->first();
+        // $status->is_open = !$status->is_open;
+        if($status->is_open==1){
+            $status->is_open = 0;
+        }
+        else
+        {
+            $status->is_open = 1;
+        }
+        $status->save();
+
+    }
 
 }
