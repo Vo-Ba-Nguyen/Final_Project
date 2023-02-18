@@ -18,3 +18,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin/danh-muc/index', [DanhMucController::class,'index']);
 Route::post('/admin/danh-muc/index', [DanhMucController::class,'store']);
 Route::get('/admin/danh-muc/data', [DanhMucController::class,'getData']);
+Route::post('/admin/danh-muc/update', [DanhMucController::class,'updateData']);
+Route::post('/admin/danh-muc/delete', [DanhMucController::class,'deleteData']);
