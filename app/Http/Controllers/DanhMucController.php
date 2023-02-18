@@ -21,7 +21,7 @@ class DanhMucController extends Controller
 
         return response()->json([
             'status'    => true,
-            'message'   => "Bạn đã thêm mới thành công danh mục!"
+            'message'   => "Thêm mới thành công!"
         ]);
     }
 
@@ -34,6 +34,22 @@ class DanhMucController extends Controller
         // dd($data);
         return response()->json([
             'data' => $data,
+        ]);
+    }
+    public function updateData(Request $request){
+        $data = $request->all();
+        $danh_muc = DanhMuc::where('id', $request->id)->first();
+        $danh_muc->update($data);
+
+        return response()->json([
+            'status' => true,
+        ]);
+    }
+    public function deleteData(Request $request){
+        DanhMuc::where('id', $request->id)->first()->delete();
+
+        return response()->json([
+            'status' => true,
         ]);
     }
 

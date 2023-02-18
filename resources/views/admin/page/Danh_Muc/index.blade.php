@@ -15,7 +15,7 @@
                         <label>Slug Danh Mục</label>
                         <input v-model="add.slug" type="text" class="form-control mt-2" placeholder="Slug Danh Mục">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-2">
                         <label>Trạng Thái</label>
                         <Select v-model="add.is_open" class="form-control mt-2">
                             <option value="0">Tạm Tắt</option>
@@ -23,7 +23,7 @@
                         </Select>
                     </div>
                     <div class="form-group mt-1">
-                        <label>ID Danh Mục Cha</label>
+                        <label>Danh Mục Cha</label>
                         <select v-model="add.id_danh_muc_cha" class="form-control">
                             <option value="0">Root</option>
                             @foreach ($danh_muc as $key => $value)
@@ -75,13 +75,71 @@
                                         </template>
                                     </td>
                                     <th>
-                                        <button class="btn btn-success">Cập Nhật</button>
-                                        <button class="btn btn-danger">Xóa</button>
+                                        <button class="btn btn-success" data-bs-toggle="modal" v-on:click="update_danh_muc = value" data-bs-target="#updateModal">Update</button>
+                                        <button class="btn btn-danger" data-bs-toggle="modal" v-on:click="delete_danh_muc = value" data-bs-target="#deleteModal">Delete</button>
                                     </th>
                                 </tr>
                             </template>
                         </tbody>
                     </table>
+                    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label>Tên Danh Mục</label>
+                                        <input v-model="update_danh_muc.ten_danh_muc" type="text" class="form-control mt-2" placeholder="Nhập tên danh mục">
+                                    </div>
+                                    <div class="form-group mt-1">
+                                        <label>Slug Danh Mục</label>
+                                        <input v-model="update_danh_muc.slug" type="text" class="form-control mt-2" placeholder="Slug Danh Mục">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label>Trạng Thái</label>
+                                        <Select v-model="update_danh_muc.is_open" class="form-control mt-2">
+                                            <option value="0">Tạm Tắt</option>
+                                            <option value="1">Hoạt Động</option>
+                                        </Select>
+                                    </div>
+                                    <div class="form-group mt-1">
+                                        <label>Danh Mục Cha</label>
+                                        <select v-model="update_danh_muc.id_danh_muc_cha" class="form-control">
+                                            <option value="0">Root</option>
+                                            @foreach ($danh_muc as $key => $value)
+                                                <option value="{{$value->id}}">{{$value->ten_danh_muc}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" v-on:click='updateDanhMuc()' data-bs-dismiss="modal" class="btn btn-primary">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Bạn có muốn xóa danh mục <b> @{{delete_danh_muc.ten_danh_muc}}</b> này không?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" v-on:click='deleteDanhMuc()' class="btn btn-primary" data-bs-dismiss="modal">Delete</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -94,6 +152,8 @@
             data : {
                 add : {},
                 list_danh_muc : [],
+                update_danh_muc : {},
+                delete_danh_muc : {},
             },
             created() {
                 this.loadData();
@@ -113,6 +173,30 @@
                         .then((res) =>{
                             toastr.success(res.data.message);
                             this.loadData();
+                        });
+                },
+                updateDanhMuc(){
+                    axios
+                        .post("/admin/danh-muc/update", this.update_danh_muc)
+                        .then((res) => {
+                            if(res.data.status) {
+                                toastr.success("Update Thành Công!");
+                                this.loadData();
+                            } else {
+                                toastr.error("Có lỗi, vui lòng kiểm tra lại!");
+                            }
+                        });
+                },
+                deleteDanhMuc(){
+                    axios
+                        .post("/admin/danh-muc/delete", this.delete_danh_muc)
+                        .then((res) => {
+                            if(res.data.status) {
+                                toastr.success("Delete Thành Công!");
+                                this.loadData();
+                            } else {
+                                toastr.error("Có Lỗi vui lòng kiểm tra lại!")
+                            }
                         });
                 },
             },
