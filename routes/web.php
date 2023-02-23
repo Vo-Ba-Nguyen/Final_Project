@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DanhMucController;
+use App\Http\Controllers\SanPhamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+// Category
 Route::get('/admin/danh-muc/index', [DanhMucController::class,'index']);
 Route::post('/admin/danh-muc/index', [DanhMucController::class,'store']);
 Route::get('/admin/danh-muc/data', [DanhMucController::class,'getData']);
 Route::post('/admin/danh-muc/update', [DanhMucController::class,'updateData']);
 Route::post('/admin/danh-muc/delete', [DanhMucController::class,'deleteData']);
 Route::post('/admin/danh-muc/statusChange', [DanhMucController::class,'statusChange']);
+
+
+//Product
+Route::get('/admin/san-pham/index', [SanPhamController::class,'index']);
+Route::post('/admin/san-pham/index', [SanPhamController::class,'store']);
+Route::get('/admin/san-pham/getDataProduct', [SanPhamController::class,'getDataProduct']);

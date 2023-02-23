@@ -4,82 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\SanPham;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\Return_;
 
 class SanPhamController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function index(){
+
+        $san_pham = SanPham::get();
+        return view('admin.page.San_Pham.index');
+    }
+    public function store(Request $request){
+            $dataProduct = $request->all();
+
+            SanPham::create($dataProduct);
+
+            return response()->json([
+                    'status' => true,
+                    'message' => "Thêm mới sản phẩm thành công"
+            ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function getDataProduct(){
+        $san_pham = SanPham::get();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\SanPham  $sanPham
-     * @return \Illuminate\Http\Response
-     */
-    public function show(SanPham $sanPham)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\SanPham  $sanPham
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(SanPham $sanPham)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\SanPham  $sanPham
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, SanPham $sanPham)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\SanPham  $sanPham
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(SanPham $sanPham)
-    {
-        //
+        return response()->json([
+            'dataProduct' => $san_pham,
+        ]);
     }
 }

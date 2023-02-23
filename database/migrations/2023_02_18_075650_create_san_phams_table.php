@@ -17,8 +17,8 @@ class CreateSanPhamsTable extends Migration
             $table->id();
             $table->string("ten_san_pham");
             $table->string("slug_san_pham");
-            $table->string("id_danh_muc_con");
-            $table->string("id_hang");
+            $table->integer("id_danh_muc_con");
+            $table->integer("id_hang");
             $table->string("mo_ta");
             $table->integer("gia_ban");
             $table->integer("gia_khuyen_mai");
