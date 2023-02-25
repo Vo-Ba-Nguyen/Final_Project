@@ -32,4 +32,14 @@ class SanPhamController extends Controller
             'dataProduct' => $san_pham,
         ]);
     }
+    public function updateDataProduct(Request $request){
+        $dataProduct = $request->all();
+        $san_pham = SanPham::where('id', $request->id)->first();
+        $san_pham->update($dataProduct);
+
+
+        return response()->json([
+            'statusProduct' => true,
+        ]);
+    }
 }
