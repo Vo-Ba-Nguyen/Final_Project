@@ -42,4 +42,12 @@ class SanPhamController extends Controller
             'statusProduct' => true,
         ]);
     }
+    public function deleteDataProduct(Request $request){
+
+        SanPham::where('id', $request->id)->first()->delete();
+
+        return response()->json([
+            'status' => true,
+        ]);
+    }
 }

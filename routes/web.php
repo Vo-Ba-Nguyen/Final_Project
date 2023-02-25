@@ -29,3 +29,4 @@ Route::get('/admin/san-pham/index', [SanPhamController::class,'index']);
 Route::post('/admin/san-pham/index', [SanPhamController::class,'store']);
 Route::get('/admin/san-pham/getDataProduct', [SanPhamController::class,'getDataProduct']);
 Route::post('/admin/san-pham/updateDataProduct', [SanPhamController::class,'updateDataProduct']);
+Route::post('/admin/san-pham/deleteDataProduct', [SanPhamController::class,'deleteDataProduct']);
