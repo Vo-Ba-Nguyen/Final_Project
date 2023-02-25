@@ -112,7 +112,7 @@
                                         </td>
                                         <th>
                                             <button class="btn btn-success mb-2" data-bs-toggle="modal" v-on:click="update_SanPham = value" data-bs-target="#updateProduct" style="width: 80px">Update</button>
-                                            <button class="btn btn-danger mt-1" data-bs-toggle="modal" data-bs-target="#deleteModal" style="width: 80px">Delete</button>
+                                            <button class="btn btn-danger mt-1" data-bs-toggle="modal" v-on:click="delete_SanPham = value" data-bs-target="#deleteProduct" style="width: 80px">Delete</button>
                                         </th>
                                     </tr>
                                 </template>
@@ -120,11 +120,11 @@
                         </table>
 
                         {{-- Update Product --}}
-                        <div class="modal fade" id="updateProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="updateProduct" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Edit Sản Phẩm</h5>
+                                    <h5 class="modal-title" id="updateModalLabel">Edit Sản Phẩm</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -192,6 +192,23 @@
 
 
                         {{-- Delete Product --}}
+                            <div class="modal fade" id="deleteProduct" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteProductModalLabel">Delete Sản Phẩm</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Bạn Có Chắc Muốn Xóa Sản Phẩm <b>@{{ delete_SanPham.ten_san_pham }} </b>này không?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button v-on:click='deleteSanPham()' type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -206,6 +223,7 @@
                 list_san_pham : [],
                 list_danh_muc: [],
                 update_SanPham : {},
+                delete_SanPham : {},
             },
             created() {
                 this.loadDataProduct();
@@ -248,7 +266,19 @@
                                 toastr.error("Có Lỗi, Vui Lòng Kiểm Tra Lại!")
                             }
                         });
-                }
+                },
+                deleteSanPham(){
+                    axios
+                        .post('/admin/san-pham/deleteDataProduct', this.delete_SanPham)
+                        .then((res) => {
+                            if(res.data.status){
+                                toastr.success("Xóa Sản Phẩm Thành Công!")
+                                this.loadDataProduct();
+                            } else {
+                                toastr.error("Có Lỗi! Vui Lòng Xem Xét lại")
+                            }
+                        });
+                },
             },
 
         });
