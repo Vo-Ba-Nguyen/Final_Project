@@ -63,7 +63,7 @@
 
                 </div>
                 <div class="card-footer text-end">
-                    <button v-on:click="themSanPham()" class="btn btn-primary">Thêm Mới</button>
+                    <button v-on:click="themSanPham()" class="btn btn-primary" data-bs-dismiss="modal">Thêm Mới</button>
                 </div>
             </div>
             </div>
@@ -111,13 +111,87 @@
 
                                         </td>
                                         <th>
-                                            <button class="btn btn-success mb-2" data-bs-toggle="modal" v-on:click="update_danh_muc = value" data-bs-target="#updateModal" style="width: 80px">Update</button>
-                                            <button class="btn btn-danger mt-1" data-bs-toggle="modal" v-on:click="delete_danh_muc = value" data-bs-target="#deleteModal" style="width: 80px">Delete</button>
+                                            <button class="btn btn-success mb-2" data-bs-toggle="modal" v-on:click="update_SanPham = value" data-bs-target="#updateProduct" style="width: 80px">Update</button>
+                                            <button class="btn btn-danger mt-1" data-bs-toggle="modal" data-bs-target="#deleteModal" style="width: 80px">Delete</button>
                                         </th>
                                     </tr>
                                 </template>
                             </tbody>
                         </table>
+
+                        {{-- Update Product --}}
+                        <div class="modal fade" id="updateProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Edit Sản Phẩm</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label>Tên Sản Phẩm</label>
+                                        <input type="text" v-model="update_SanPham.ten_san_pham" class="form-control mt-2" placeholder="Nhập tên sản phẩm">
+                                    </div>
+                                    <div class="form-group mt-1">
+                                        <label>Slug Sản Phẩm</label>
+                                        <input type="text" v-model="update_SanPham.slug_san_pham" class="form-control mt-2" placeholder="Slug Sản Phẩm">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label>Danh Mục</label>
+                                        <Select v-model="update_SanPham.id_danh_muc_con" class="form-control mt-2">
+                                            <template v-for="(v, k) in list_danh_muc">
+                                            <option v-bind:value="v.id">@{{ v.ten_danh_muc }}</option>
+                                            </template>
+                                        </Select>
+                                    </div>
+                                    <div class="form-group mt-1">
+                                        <label>Hãng</label>
+                                            <Select v-model="update_SanPham.id_hang" class="form-control mt-2">
+                                                <option value="0">Merry</option>
+                                                <option value="1">Bobby</option>
+                                                <option value="2">Meji</option>
+                                                <option value="3">Molfig</option>
+                                                <option value="4">Mijuku</option>
+                                            </Select>
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label>Mô Tả</label>
+                                        <input type="text" v-model="update_SanPham.mo_ta" class="form-control mt-2" placeholder="Nhập Mô Tả">
+                                    </div>
+                                    <div class="form-group mt-1">
+                                        <label>Giá Bán</label>
+                                        <input type="number" v-model="update_SanPham.gia_ban" class="form-control mt-2" placeholder="Nhập Giá Bán">
+                                    </div>
+                                    <div class="form-group mt-1">
+                                        <label>Giá Khuyến Mãi</label>
+                                        <input type="number" v-model="update_SanPham.gia_khuyen_mai" class="form-control mt-2" placeholder="Nhập Giá Khuyến Mãi">
+                                    </div>
+                                    <div class="form-group mt-1">
+                                        <label>Hình Ảnh</label>
+                                        <input type="text" v-model="update_SanPham.hinh_anh" class="form-control mt-2" placeholder="Nhập Hình Ảnh">
+                                    </div>
+                                    <div class="form-group mt-1">
+                                        <label>Số Lượng</label>
+                                        <input type="number" v-model="update_SanPham.so_luong" class="form-control mt-2" placeholder="Nhập Số Lượng">
+                                    </div>
+                                    <div class="form-group mt-2">
+                                        <label>Trạng Thái</label>
+                                        <Select v-model="update_SanPham.is_open" class="form-control mt-2">
+                                            <option value="0">Tạm Tắt</option>
+                                            <option value="1">Hoạt Động</option>
+                                        </Select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                    <button v-on:click='updateSanPham()' type="button" data-bs-dismiss="modal" class="btn btn-success">Update</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {{-- Delete Product --}}
                     </div>
                 </div>
             </div>
@@ -131,6 +205,7 @@
                 addProduct : {},
                 list_san_pham : [],
                 list_danh_muc: [],
+                update_SanPham : {},
             },
             created() {
                 this.loadDataProduct();
@@ -162,6 +237,18 @@
                             console.log(this.list_danh_muc);
                         });
                 },
+                updateSanPham(){
+                    axios
+                        .post('/admin/san-pham/updateDataProduct', this.update_SanPham)
+                        .then((res) => {
+                            if(res.data.statusProduct){
+                                toastr.success("Update Sản Phẩm Thành Công!")
+                                this.loadDataProduct();
+                            } else {
+                                toastr.error("Có Lỗi, Vui Lòng Kiểm Tra Lại!")
+                            }
+                        });
+                }
             },
 
         });
