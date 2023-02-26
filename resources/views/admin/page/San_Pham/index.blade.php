@@ -105,9 +105,9 @@
                                         <td>@{{value.so_luong}}</td>
                                         <td>
 
-                                            <button v-on:click='' class="btn btn-primary" v-if="value.is_open" style="width: 80px">Hoạt Động</button>
+                                            <button v-on:click='changeStatusSanPham(value)' class="btn btn-primary" v-if="value.is_open" style="width: 80px">Hoạt Động</button>
 
-                                            <button v-on:click='' class="btn btn-danger" v-else style="width: 80px">Tạm Tắt</button>
+                                            <button v-on:click='changeStatusSanPham(value)' class="btn btn-danger" v-else style="width: 80px">Tạm Tắt</button>
 
                                         </td>
                                         <th>
@@ -277,6 +277,14 @@
                             } else {
                                 toastr.error("Có Lỗi! Vui Lòng Xem Xét lại")
                             }
+                        });
+                },
+                changeStatusSanPham(v){
+                    axios
+                        .post('/admin/san-pham/changeStatusProduct',v)
+                        .then((res) => {
+                            toastr.success("Đổi Trạng Thái Thành Công!")
+                            this.loadDataProduct();
                         });
                 },
             },
