@@ -50,4 +50,14 @@ class SanPhamController extends Controller
             'status' => true,
         ]);
     }
+    public function changeStatusProduct(Request $request){
+        $statusSanPham = SanPham::where('id', $request->id)->first();
+
+        if($statusSanPham->is_open==1){
+            $statusSanPham->is_open = 0;
+        } else {
+            $statusSanPham->is_open = 1;
+        }
+        $statusSanPham->save();
+    }
 }
