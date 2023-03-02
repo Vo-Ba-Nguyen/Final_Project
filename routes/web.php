@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\SanPhamController;
+use App\Http\Controllers\XuatXuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +32,7 @@ Route::get('/admin/san-pham/getDataProduct', [SanPhamController::class,'getDataP
 Route::post('/admin/san-pham/updateDataProduct', [SanPhamController::class,'updateDataProduct']);
 Route::post('/admin/san-pham/deleteDataProduct', [SanPhamController::class,'deleteDataProduct']);
 Route::post('/admin/san-pham/changeStatusProduct', [SanPhamController::class,'changeStatusProduct']);
+
+
+//Origin
+Route::get('/admin/xuat-xu/index', [XuatXuController::class, 'index']);
