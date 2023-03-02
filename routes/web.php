@@ -36,3 +36,6 @@ Route::post('/admin/san-pham/changeStatusProduct', [SanPhamController::class,'ch
 
 //Origin
 Route::get('/admin/xuat-xu/index', [XuatXuController::class, 'index']);
+Route::post('/admin/xuat-xu/index', [XuatXuController::class, 'store']);
+Route::get('/admin/xuat-xu/getDataOrigin', [XuatXuController::class, 'getDataOrigin']);
+Route::post('/admin/xuat-xu/updateDataOrigin', [XuatXuController::class, 'updateDataOrigin']);

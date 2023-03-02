@@ -15,6 +15,7 @@ class SanPhamController extends Controller
         return view('admin.page.San_Pham.index');
     }
     public function store(Request $request){
+        
             $dataProduct = $request->all();
 
             SanPham::create($dataProduct);
