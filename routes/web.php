@@ -39,3 +39,4 @@ Route::get('/admin/xuat-xu/index', [XuatXuController::class, 'index']);
 Route::post('/admin/xuat-xu/index', [XuatXuController::class, 'store']);
 Route::get('/admin/xuat-xu/getDataOrigin', [XuatXuController::class, 'getDataOrigin']);
 Route::post('/admin/xuat-xu/updateDataOrigin', [XuatXuController::class, 'updateDataOrigin']);
+Route::post('/admin/xuat-xu/deleteDataOrigin', [XuatXuController::class, 'deleteDataOrigin']);
