@@ -61,5 +61,6 @@ class SanPhamController extends Controller
         }
         $statusSanPham->save();
     }
-    
+
+
 }
