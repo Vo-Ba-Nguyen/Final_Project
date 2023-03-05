@@ -48,3 +48,4 @@ Route::post('/admin/hang/index', [HangController::class, 'store']);
 Route::get('/admin/hang/getDataFirms', [HangController::class,'getDataFirms']);
 Route::post('/admin/hang/updateFirms', [HangController::class,'updateFirms']);
 Route::post('/admin/hang/deleteFirms', [HangController::class,'deleteFirms']);
+Route::post('admin/hang/changeStatusFirms', [HangController::class,'changeStatusFirms']);

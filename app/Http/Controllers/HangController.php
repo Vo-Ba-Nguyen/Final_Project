@@ -52,6 +52,18 @@ class HangController extends Controller
             return response()->json([
                 'status_firms' => true,
             ]);
-
     }
+    public function changeStatusFirms(Request $request){
+
+        $statusHang = Hang::where('id', $request->id)->first();
+
+        if($statusHang->is_open == 1){
+            $statusHang->is_open = 0 ;
+        } else {
+            $statusHang->is_open =1;
+        }
+
+        $statusHang->save();
+    }
+
 }

@@ -61,9 +61,9 @@
                                             <td v-if="v1.id == value.id_xuat_xu">@{{v1.ten_nuoc}}</td>
                                         </template>
                                         <td>
-                                            <button v-on:click='' class="btn btn-primary" v-if="value.is_open" style="width: 180px">Hoạt Động</button>
+                                            <button v-on:click='changeStatusFirm(value)' class="btn btn-primary" v-if="value.is_open" style="width: 180px">Hoạt Động</button>
 
-                                            <button v-on:click='' class="btn btn-danger" v-else style="width: 180px">Tạm Tắt</button>
+                                            <button v-on:click='changeStatusFirm(value)' class="btn btn-danger" v-else style="width: 180px">Tạm Tắt</button>
                                         </td>
                                         <th>
                                             <button class="btn btn-success" data-bs-toggle="modal" v-on:click="update_firms = value" data-bs-target="#updateFirms" style="width: 80px">Update</button>
@@ -198,6 +198,14 @@
                             } else {
                                 toastr.error("Có Lỗi! Vui Lòng Kiểm Tra Lại");
                             }
+                        });
+                },
+                changeStatusFirm(v){
+                    axios
+                        .post('/admin/hang/changeStatusFirms',v)
+                        .then((res) => {
+                            toastr.success("Đổi Trạng Thái Thành Công!");
+                            this.loadDataFirms();
                         });
                 },
             },
