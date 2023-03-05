@@ -45,4 +45,12 @@ class XuatXuController extends Controller
             'data_origin' => true,
         ]);
     }
+    public function deleteDataOrigin(Request $request){
+
+        XuatXu::where('id', $request->id)->first()->delete();
+
+        return response() -> json([
+            'data_origin' =>true,
+        ]);
+    }
 }

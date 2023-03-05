@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DanhMucController;
+use App\Http\Controllers\HangController;
 use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\XuatXuController;
 use Illuminate\Support\Facades\Route;
@@ -39,3 +40,12 @@ Route::get('/admin/xuat-xu/index', [XuatXuController::class, 'index']);
 Route::post('/admin/xuat-xu/index', [XuatXuController::class, 'store']);
 Route::get('/admin/xuat-xu/getDataOrigin', [XuatXuController::class, 'getDataOrigin']);
 Route::post('/admin/xuat-xu/updateDataOrigin', [XuatXuController::class, 'updateDataOrigin']);
+Route::post('/admin/xuat-xu/deleteDataOrigin', [XuatXuController::class, 'deleteDataOrigin']);
+
+//firms
+Route::get('/admin/hang/index', [HangController::class, 'index']);
+Route::post('/admin/hang/index', [HangController::class, 'store']);
+Route::get('/admin/hang/getDataFirms', [HangController::class,'getDataFirms']);
+Route::post('/admin/hang/updateFirms', [HangController::class,'updateFirms']);
+Route::post('/admin/hang/deleteFirms', [HangController::class,'deleteFirms']);
+Route::post('admin/hang/changeStatusFirms', [HangController::class,'changeStatusFirms']);

@@ -42,13 +42,15 @@
                                     <td>@{{value.ten_nuoc}}</td>
                                     <td>
                                         <button class="btn btn-success " data-bs-toggle="modal" v-on:click="update_xuat_xu = value" data-bs-target="#updateOrigin" style="width: 100px">Update</button>
-                                        <button class="btn btn-danger " data-bs-toggle="modal" v-on:click="" data-bs-target="#deleteProduct" style="width: 100px">Delete</button>
+                                        <button class="btn btn-danger " data-bs-toggle="modal" v-on:click="delete_xuat_xu = value" data-bs-target="#deleteOrigin" style="width: 100px">Delete</button>
                                     </td>
                                 </tr>
                             </template>
                         </tbody>
                     </table>
 
+
+                    {{-- Update Origin --}}
                     <div class="modal fade" id="updateOrigin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateOriginLabel" aria-hidden="true">
                         <div class="modal-dialog">
                                 <div class="modal-content">
@@ -75,6 +77,27 @@
                             </div>
                         </div>
                     </div>
+
+
+                    {{-- Delete Origin --}}
+
+                    <div class="modal" tabindex="-1" id="deleteOrigin">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Bạn Có Chắc Muốn Xóa Xuất Xứ <b>@{{ delete_xuat_xu.ten_nuoc }} </b>này không?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button v-on:click="deleteXuatXu()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,6 +111,7 @@
                 add_Origin : {},
                 list_xuat_xu : [],
                 update_xuat_xu : {},
+                delete_xuat_xu : {},
             },
             created() {
                 this.loadDataOrigin();
@@ -121,6 +145,18 @@
 
                         });
                     },
+                deleteXuatXu(){
+                    axios
+                        .post('/admin/xuat-xu/deleteDataOrigin', this.delete_xuat_xu)
+                        .then((res) => {
+                            if(res.data.data_origin){
+                                toastr.success("Xóa Thành Công");
+                                this.loadDataOrigin();
+                            } else {
+                                toastr.error("Có Lỗi! Vui lòng kiểm tra lại");
+                            }
+                        });
+                },
             },
         });
     </script>
