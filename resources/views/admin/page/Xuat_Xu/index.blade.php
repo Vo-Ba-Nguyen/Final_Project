@@ -130,6 +130,7 @@
                         .then((res) => {
                             toastr.success(res.data.message);
                             this.loadDataOrigin();
+                            this.add_Origin = {};
                         });
                 },
                 updateXuatXu(){

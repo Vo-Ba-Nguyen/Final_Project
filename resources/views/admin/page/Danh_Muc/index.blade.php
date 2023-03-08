@@ -175,6 +175,7 @@
                         .then((res) =>{
                             toastr.success(res.data.message);
                             this.loadData();
+                            this.add = {};
                         });
                 },
                 updateDanhMuc(){

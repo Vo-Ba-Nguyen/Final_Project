@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChiTietNhapKhoController;
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\HangController;
 use App\Http\Controllers\SanPhamController;
@@ -49,3 +50,11 @@ Route::get('/admin/hang/getDataFirms', [HangController::class,'getDataFirms']);
 Route::post('/admin/hang/updateFirms', [HangController::class,'updateFirms']);
 Route::post('/admin/hang/deleteFirms', [HangController::class,'deleteFirms']);
 Route::post('admin/hang/changeStatusFirms', [HangController::class,'changeStatusFirms']);
+
+//Product Details
+Route::get('/admin/product-details/index', [ChiTietNhapKhoController::class, 'index']);
+Route::post('/admin/product-details/create-detail', [ChiTietNhapKhoController::class, 'createDetail']);
+Route::get('/admin/product-details/data', [ChiTietNhapKhoController::class, 'getData']);
+Route::post('/admin/product-details/updateDetail', [ChiTietNhapKhoController::class, 'updateDetail']);
+
+
