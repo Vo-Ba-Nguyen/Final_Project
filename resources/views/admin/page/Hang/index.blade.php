@@ -174,6 +174,7 @@
                         .then((res) => {
                             toastr.success(res.data.message);
                             this.loadDataFirms();
+                            this.add_Firms = {};
                         });
                 },
                 updateFirms(){

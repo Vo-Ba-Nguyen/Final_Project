@@ -26,11 +26,9 @@
                     <div class="form-group mt-1">
                         <label>Hãng</label>
                             <Select v-model="addProduct.id_hang" class="form-control mt-2">
-                                <option value="0">Merry</option>
-                                <option value="1">Bobby</option>
-                                <option value="2">Meji</option>
-                                <option value="3">Molfig</option>
-                                <option value="4">Mijuku</option>
+                                    <template v-for="(v2, k2) in list_firms">
+                                        <option v-bind:value="v2.id">@{{ v2.ten_hang }}</option>
+                                    </template>
                             </Select>
                     </div>
                     <div class="form-group mt-2">
@@ -97,7 +95,9 @@
                                         <template v-for="(v1, k1) in list_danh_muc">
                                             <td v-if="v1.id == value.id_danh_muc_con"> @{{v1.ten_danh_muc}}</td>
                                         </template>
-                                        <td>@{{value.id_hang}}</td>
+                                        <template v-for="(v3, k3) in list_firms">
+                                            <td v-if="v3.id == value.id_hang">@{{ v3.ten_hang}}</td>
+                                        </template>
                                         <td>@{{value.mo_ta}}</td>
                                         <td>@{{value.gia_ban}}</td>
                                         <td>@{{value.gia_khuyen_mai}}</td>
@@ -147,11 +147,9 @@
                                     <div class="form-group mt-1">
                                         <label>Hãng</label>
                                             <Select v-model="update_SanPham.id_hang" class="form-control mt-2">
-                                                <option value="0">Merry</option>
-                                                <option value="1">Bobby</option>
-                                                <option value="2">Meji</option>
-                                                <option value="3">Molfig</option>
-                                                <option value="4">Mijuku</option>
+                                                <template v-for="(v2, k2) in list_firms">
+                                                    <option v-bind:value="v2.id">@{{ v2.ten_hang}}</option>
+                                                </template>
                                             </Select>
                                     </div>
                                     <div class="form-group mt-2">
@@ -222,12 +220,14 @@
                 addProduct : {},
                 list_san_pham : [],
                 list_danh_muc: [],
+                list_firms : [],
                 update_SanPham : {},
                 delete_SanPham : {},
             },
             created() {
                 this.loadDataProduct();
                 this.loadDataDanhMuc();
+                this.loadDataFirms();
             },
             methods : {
                 loadDataProduct(){
@@ -237,13 +237,20 @@
                             this.list_san_pham  = res.data.dataProduct;
                         });
                 },
-
+                loadDataFirms(){
+                    axios
+                        .get('/admin/hang/getDataFirms')
+                        .then((res) => {
+                            this.list_firms = res.data.dataFirms;
+                        });
+                },
                 themSanPham(){
                     axios
                         .post('/admin/san-pham/index', this.addProduct)
                         .then((res) =>{
                                 toastr.success(res.data.message);
                                 this.loadDataProduct();
+                                this.addProduct = {};
                         });
                 },
 
