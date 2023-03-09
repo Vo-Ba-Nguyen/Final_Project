@@ -25,7 +25,9 @@ class ChiTietNhapKhoController extends Controller
                                         ->where('hoa_don_nhap_khos.is_nhap_kho', 0)
                                         ->select('chi__tiet__nhap__khos.*')
                                         ->first();
+        $id_hoa_don = 0;
         if($tang_soluong){
+            $id_hoa_don = $tang_soluong->id_hoa_don_nhap_kho;
             $tang_soluong->so_luong_san_pham_nhap = $tang_soluong->so_luong_san_pham_nhap + 1;
             $tang_soluong->save();
         }else{
@@ -40,6 +42,7 @@ class ChiTietNhapKhoController extends Controller
 
                 $dataProductsDetails['hash_code'] = Str::uuid();
                 $nhap_kho = Hoa_Don_Nhap_Kho::create($dataProductsDetails);
+                $id_hoa_don = $nhap_kho->id;
                 Chi_Tiet_Nhap_Kho::create([
                     'id_san_pham' => $request->id,
                     'ten_san_pham' => $request->ten_san_pham,
@@ -48,6 +51,7 @@ class ChiTietNhapKhoController extends Controller
                     'don_gia_nhap' => 0,
                 ]);
             }else{
+                $id_hoa_don = $tim_hoa_don->id;
                 Chi_Tiet_Nhap_Kho::create([
                     'id_san_pham' => $request->id,
                     'ten_san_pham' => $request->ten_san_pham,
@@ -60,6 +64,30 @@ class ChiTietNhapKhoController extends Controller
 
         return response()->json([
             'status' => 1,
+            'id_hoa_don' => $id_hoa_don,
+        ]);
+    }
+
+    public function createBill(Request $request)
+    {
+        $id_hoa_don = $request->id_hoa_don;
+        $chi_tiet_hoa_don = Chi_Tiet_Nhap_Kho::where('id_hoa_don_nhap_kho', $id_hoa_don)->get();
+        $so_luong_sp = 0;
+        $tong_tien = 0;
+
+        foreach($chi_tiet_hoa_don as $key => $value){
+            $so_luong_sp += $value->so_luong_san_pham_nhap;
+            $tong_tien += ($value->so_luong_san_pham_nhap * $value->don_gia_nhap);
+        }
+
+        $hoa_don = Hoa_Don_Nhap_Kho::find($id_hoa_don);
+        $hoa_don->tong_so_luong_san_pham = $so_luong_sp;
+        $hoa_don->tong_tien = $tong_tien;
+        $hoa_don->is_nhap_kho = 1;
+        $hoa_don->save();
+
+        return response()->json([
+            'status' => true,
         ]);
     }
 
@@ -103,4 +131,5 @@ class ChiTietNhapKhoController extends Controller
             'statusDelete' => true,
         ]);
     }
+
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\HangController;
 use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\XuatXuController;
+use App\Models\Hoa_Don_Nhap_Kho;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,8 +55,11 @@ Route::post('admin/hang/changeStatusFirms', [HangController::class,'changeStatus
 //Product Details
 Route::get('/admin/product-details/index', [ChiTietNhapKhoController::class, 'index']);
 Route::post('/admin/product-details/create-detail', [ChiTietNhapKhoController::class, 'createProductsDetail']);
+Route::post('/admin/product-details/create', [ChiTietNhapKhoController::class, 'createBill']);
 Route::get('/admin/product-details/data', [ChiTietNhapKhoController::class, 'getData']);
 Route::post('/admin/product-details/updateDetail', [ChiTietNhapKhoController::class, 'updateDetail']);
 Route::post('/admin/product-details/deleteDetail', [ChiTietNhapKhoController::class, 'deleteDetail']);
 
+//Bill Information
+// Route::get('/admin/bill-infor/index', Hoa_Don_Nhap_Kho::class, 'index');
 
