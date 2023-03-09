@@ -105,14 +105,15 @@
                                         <td>@{{value.so_luong}}</td>
                                         <td>
 
-                                            <button v-on:click='changeStatusSanPham(value)' class="btn btn-primary" v-if="value.is_open" style="width: 80px">Hoạt Động</button>
+                                            <button v-on:click='changeStatusSanPham(value)' class="btn btn-primary" v-if="value.is_open" style="width: 110px">Hoạt Động</button>
 
-                                            <button v-on:click='changeStatusSanPham(value)' class="btn btn-danger" v-else style="width: 80px">Tạm Tắt</button>
+                                            <button v-on:click='changeStatusSanPham(value)' class="btn btn-danger" v-else style="width: 110px">Tạm Tắt</button>
 
                                         </td>
                                         <th>
-                                            <button class="btn btn-success mb-2" data-bs-toggle="modal" v-on:click="update_SanPham = value" data-bs-target="#updateProduct" style="width: 80px">Update</button>
-                                            <button class="btn btn-danger mt-1" data-bs-toggle="modal" v-on:click="delete_SanPham = value" data-bs-target="#deleteProduct" style="width: 80px">Delete</button>
+                                            <button class="btn btn-success mb-2" data-bs-toggle="modal" v-on:click="update_SanPham = value" data-bs-target="#updateProduct" style="width: 120px">Update <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
+                                            <button class="btn btn-danger mt-1" data-bs-toggle="modal" v-on:click="delete_SanPham = value" data-bs-target="#deleteProduct" style="width: 120px">Delete <i class="bx bx-trash-alt me-0"></i></button>
                                         </th>
                                     </tr>
                                 </template>
@@ -202,7 +203,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button v-on:click='deleteSanPham()' type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+                                            <button v-on:click='deleteSanPham()' type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete<i class="bx bx-trash-alt me-0"></i></button>
                                         </div>
                                     </div>
                                 </div>

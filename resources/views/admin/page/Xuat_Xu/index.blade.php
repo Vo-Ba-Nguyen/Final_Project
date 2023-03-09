@@ -41,8 +41,8 @@
                                     <th class="text-center">@{{ key + 1}}</th>
                                     <td>@{{value.ten_nuoc}}</td>
                                     <td>
-                                        <button class="btn btn-success " data-bs-toggle="modal" v-on:click="update_xuat_xu = value" data-bs-target="#updateOrigin" style="width: 100px">Update</button>
-                                        <button class="btn btn-danger " data-bs-toggle="modal" v-on:click="delete_xuat_xu = value" data-bs-target="#deleteOrigin" style="width: 100px">Delete</button>
+                                        <button class="btn btn-success " data-bs-toggle="modal" v-on:click="update_xuat_xu = value" data-bs-target="#updateOrigin" style="width: 110px">Update <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button>
+                                        <button class="btn btn-danger " data-bs-toggle="modal" v-on:click="delete_xuat_xu = value" data-bs-target="#deleteOrigin" style="width: 110px">Delete<i class="bx bx-trash-alt me-0"></i></button>
                                     </td>
                                 </tr>
                             </template>
@@ -93,7 +93,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button v-on:click="deleteXuatXu()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+                                <button v-on:click="deleteXuatXu()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete<i class="bx bx-trash-alt me-0"></i></button>
                             </div>
                             </div>
                         </div>
