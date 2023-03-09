@@ -19,7 +19,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <template v-for="(value1, key1) in list_products">
+                                <template v-for="(value1, key1) in list_san_pham">
                                     <tr>
                                         <th class="text-center">@{{key1 + 1}}</th>
                                         <td>@{{value1.ten_san_pham}}</td>
@@ -51,7 +51,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <template v-for="(value, key) in list_details">
+                                <template v-for="(value, key) in list_chi_tiet">
                                     <tr>
                                         <th class="text-center">@{{ key + 1}}</th>
                                         <td>@{{value.ten_san_pham}}</td>
@@ -59,7 +59,7 @@
                                         <td><input type="number" v-on:blur="capNhatDetail(value)" v-model="value.don_gia_nhap" v-bind:value="value.don_gia_nhap" class="form-control"></td>
                                         <td>@{{value.so_luong_san_pham_nhap * value.don_gia_nhap}} $</td>
                                         <td>
-                                            <button class="btn btn-danger" style="width: 100px">Xóa <i class="bx bx-trash-alt me-0"></i></button>
+                                            <button v-on:click="xoaDetails(value)" class="btn btn-danger" style="width: 100px">Xóa <i class="bx bx-trash-alt me-0"></i></button>
                                         </td>
                                     </tr>
                                 </template>
@@ -81,8 +81,8 @@
             new Vue({
                 el  : "#product_Details",
                 data : {
-                    list_products : [],
-                    list_details  : [],
+                    list_san_pham : [],
+                    list_chi_tiet  : [],
                 },
                 created() {
                     this.loadDataProducts();
@@ -92,7 +92,7 @@
                         axios
                             .get('/admin/san-pham/getDataProduct')
                             .then((res) => {
-                                this.list_products = res.data.dataProduct;
+                                this.list_san_pham = res.data.dataProduct;
                                 this.loadDetail();
                             });
                     },
@@ -105,7 +105,7 @@
                                     toastr.success("Thêm mới Thành Công!");
                                     this.loadDataProducts();
                                 } else {
-                                    toastr.error("Có lỗi, vui lòng kiểm tra lại!");
+                                    toastr.error("Có lỗi! Vui lòng kiểm tra lại!");
                                 }
                             });
                     },
@@ -114,7 +114,7 @@
                         axios
                             .get('/admin/product-details/data')
                             .then((res) => {
-                                this.list_details = res.data.data;
+                                this.list_chi_tiet = res.data.data;
                             });
                     },
 
@@ -126,10 +126,22 @@
                                     toastr.success("Cập Nhật Thành Công!");
                                     this.loadData();
                                 } else {
-                                    toastr.error("Có lỗi, vui lòng kiểm tra lại!");
+                                    toastr.error("Có lỗi! Vui lòng kiểm tra lại!");
                                 }
                             });
                     },
+                    xoaDetails(v) {
+                        axios
+                            .post('/admin/product-details/deleteDetail',v)
+                            .then((res) => {
+                                if(res.data.statusDelete){
+                                    toastr.success("Xóa Thành Công!");
+                                    this.loadDetail();
+                                } else{
+                                    toastr.error("Có lỗi! Vui lòng kiểm tra lại")
+                                }
+                            });
+                    }
                 },
             });
         </script>

@@ -53,8 +53,9 @@ Route::post('admin/hang/changeStatusFirms', [HangController::class,'changeStatus
 
 //Product Details
 Route::get('/admin/product-details/index', [ChiTietNhapKhoController::class, 'index']);
-Route::post('/admin/product-details/create-detail', [ChiTietNhapKhoController::class, 'createDetail']);
+Route::post('/admin/product-details/create-detail', [ChiTietNhapKhoController::class, 'createProductsDetail']);
 Route::get('/admin/product-details/data', [ChiTietNhapKhoController::class, 'getData']);
 Route::post('/admin/product-details/updateDetail', [ChiTietNhapKhoController::class, 'updateDetail']);
+Route::post('/admin/product-details/deleteDetail', [ChiTietNhapKhoController::class, 'deleteDetail']);
 
 

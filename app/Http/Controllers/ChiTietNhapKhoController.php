@@ -17,9 +17,9 @@ class ChiTietNhapKhoController extends Controller
         return view('admin.page.Chi_Tiet_Nhap_Kho.index');
     }
 
-    public function createDetail(Request $request)
+    public function createProductsDetail(Request $request)
     {
-        $data = $request->all();
+        $dataProductsDetails = $request->all();
         $tang_soluong = Chi_Tiet_Nhap_Kho::join('hoa_don_nhap_khos', 'chi__tiet__nhap__khos.id_hoa_don_nhap_kho', 'hoa_don_nhap_khos.id')
                                         ->where('chi__tiet__nhap__khos.id_san_pham', $request->id)
                                         ->where('hoa_don_nhap_khos.is_nhap_kho', 0)
@@ -29,21 +29,21 @@ class ChiTietNhapKhoController extends Controller
             $tang_soluong->so_luong_san_pham_nhap = $tang_soluong->so_luong_san_pham_nhap + 1;
             $tang_soluong->save();
         }else{
-            $find_warehouse_invoices = Hoa_Don_Nhap_Kho::where('is_nhap_kho', 0)->first();
-            if(!$find_warehouse_invoices){
-                $warehouse_invoices = Hoa_Don_Nhap_Kho::latest()->first();
-                if($warehouse_invoices){
-                    $data['id_don_hang'] =  1000 + $warehouse_invoices->id;
+            $tim_hoa_don = Hoa_Don_Nhap_Kho::where('is_nhap_kho', 0)->first();
+            if(!$tim_hoa_don){
+                $hon_don_nhap_kho = Hoa_Don_Nhap_Kho::latest()->first();
+                if($hon_don_nhap_kho){
+                    $dataProductsDetails['id_don_hang'] =  001 + $hon_don_nhap_kho->id;
                 }else{
-                    $data['id_don_hang'] =  1000;
+                    $dataProductsDetails['id_don_hang'] =  001;
                 }
 
-                $data['hash_code'] = Str::uuid();
-                $warehouse = Hoa_Don_Nhap_Kho::create($data);
+                $dataProductsDetails['hash_code'] = Str::uuid();
+                $nhap_kho = Hoa_Don_Nhap_Kho::create($dataProductsDetails);
                 Chi_Tiet_Nhap_Kho::create([
                     'id_san_pham' => $request->id,
                     'ten_san_pham' => $request->ten_san_pham,
-                    'id_hoa_don_nhap_kho' => $warehouse->id,
+                    'id_hoa_don_nhap_kho' => $nhap_kho->id,
                     'so_luong_san_pham_nhap' => 1,
                     'don_gia_nhap' => 0,
                 ]);
@@ -51,7 +51,7 @@ class ChiTietNhapKhoController extends Controller
                 Chi_Tiet_Nhap_Kho::create([
                     'id_san_pham' => $request->id,
                     'ten_san_pham' => $request->ten_san_pham,
-                    'id_hoa_don_nhap_kho' => $find_warehouse_invoices->id,
+                    'id_hoa_don_nhap_kho' => $tim_hoa_don->id,
                     'so_luong_san_pham_nhap' => 1,
                     'don_gia_nhap' => 0,
                 ]);
@@ -65,10 +65,6 @@ class ChiTietNhapKhoController extends Controller
 
     public function getData()
     {
-        // $data = Chi_Tiet_Nhap_Kho::join('hoa_don_nhap_khos', 'chi__tiet__nhap__khos.id_hoa_don_nhap_kho', 'hoa_don_nhap_khos.id')
-        //                             ->where('hoa_don_nhap_khos.is_nhap_kho', 0)
-        //                             ->select('chi__tiet__nhap__khos.*')
-        //                             ->get();
 
         $data = Chi_Tiet_Nhap_Kho::all();
         $hoa_don = Hoa_Don_Nhap_Kho::where('is_nhap_kho', 0)
@@ -96,6 +92,15 @@ class ChiTietNhapKhoController extends Controller
         $chi_tiet->save();
         return response()->json([
             'status' => 1,
+        ]);
+    }
+
+    public function deleteDetail(Request $request){
+
+        $chi_tiet = Chi_Tiet_Nhap_Kho::where('id', $request->id)->first()->delete();
+
+        return response()->json([
+            'statusDelete' => true,
         ]);
     }
 }
