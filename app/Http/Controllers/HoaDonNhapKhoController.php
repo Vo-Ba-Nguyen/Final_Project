@@ -2,84 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chi_Tiet_Nhap_Kho;
 use App\Models\Hoa_Don_Nhap_Kho;
 use Illuminate\Http\Request;
 
 class HoaDonNhapKhoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+   public function index(){
+    Hoa_Don_Nhap_Kho::get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    return view('admin.page.Hoa_Don_Kho.index');
+   }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+   public function getDataBill(Request $request) {
+        $bill = Hoa_Don_Nhap_Kho::get();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Hoa_Don_Nhap_Kho  $hoa_Don_Nhap_Kho
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Hoa_Don_Nhap_Kho $hoa_Don_Nhap_Kho)
-    {
-        //
-    }
+        return response()->json([
+            'dataBill' => $bill,
+        ]);
+   }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Hoa_Don_Nhap_Kho  $hoa_Don_Nhap_Kho
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Hoa_Don_Nhap_Kho $hoa_Don_Nhap_Kho)
-    {
-        //
-    }
+   public function viewDetailsBill($id) {
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Hoa_Don_Nhap_Kho  $hoa_Don_Nhap_Kho
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Hoa_Don_Nhap_Kho $hoa_Don_Nhap_Kho)
-    {
-        //
-    }
+    $bill = Chi_Tiet_Nhap_Kho::where('id_hoa_don_nhap_kho', $id)->get();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Hoa_Don_Nhap_Kho  $hoa_Don_Nhap_Kho
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Hoa_Don_Nhap_Kho $hoa_Don_Nhap_Kho)
-    {
-        //
-    }
+    return response()->json([
+        'dataDetailsBill' => $bill,
+    ]);
+   }
 }
