@@ -133,7 +133,6 @@
                         this.tong_tien = 0;
                         this.list_chi_tiet.forEach(v1 => {
                             this.tong_tien = this.tong_tien + (v1.so_luong_san_pham_nhap * v1.don_gia_nhap);
-                            console.log(this.tong_tien);
                         });
                     },
 

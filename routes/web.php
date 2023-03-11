@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChiTietNhapKhoController;
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\HangController;
+use App\Http\Controllers\HoaDonNhapKhoController;
 use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\XuatXuController;
 use App\Models\Hoa_Don_Nhap_Kho;
@@ -61,5 +62,6 @@ Route::post('/admin/product-details/updateDetail', [ChiTietNhapKhoController::cl
 Route::post('/admin/product-details/deleteDetail', [ChiTietNhapKhoController::class, 'deleteDetail']);
 
 //Bill Information
-// Route::get('/admin/bill-infor/index', Hoa_Don_Nhap_Kho::class, 'index');
-
+Route::get('/admin/bill-infor/index',[ HoaDonNhapKhoController::class, 'index']);
+Route::get('/admin/bill-infor/getDataBill',[ HoaDonNhapKhoController::class, 'getDataBill']);
+Route::get('/admin/bill-infor/viewDetailsBill/{id}',[ HoaDonNhapKhoController::class, 'viewDetailsBill']);
