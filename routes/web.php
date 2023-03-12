@@ -65,3 +65,4 @@ Route::post('/admin/product-details/deleteDetail', [ChiTietNhapKhoController::cl
 Route::get('/admin/bill-infor/index',[ HoaDonNhapKhoController::class, 'index']);
 Route::get('/admin/bill-infor/getDataBill',[ HoaDonNhapKhoController::class, 'getDataBill']);
 Route::get('/admin/bill-infor/viewDetailsBill/{id}',[ HoaDonNhapKhoController::class, 'viewDetailsBill']);
+Route::post('/admin/bill-infor/deleteBill', [ HoaDonNhapKhoController::class, 'deleteBill']);
