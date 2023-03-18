@@ -42,15 +42,19 @@
                                                 <th class="text-center">@{{key + 1}}</th>
                                                 <td>@{{value.tong_so_luong_san_pham}}</td>
                                                 <td>@{{value.tong_tien}}</td>
-                                                <td>@{{value.hinh_thuc_thanh_toan}}</td>
+                                                <td>
+                                                    <select class="form-select" aria-label="Disabled select example">
+                                                        <option>Tiền Mặt $</option>
+                                                        <option>Chuyển Khoản </option> <i class="lni lni-credit-cards"></i>
+                                                    </select>
+                                                </td>
                                                 <td>@{{value.tinh_trang_thanh_toan}}</td>
                                                 <td>@{{value.created_at}}</td>
                                                 <td>
-                                                    <button data-bs-toggle="modal" data-bs-target="#viewDetailsBill" v-on:click="viewDetails(value.id)" class="btn btn-primary radius-20" type="button">Chi Tiết</button>
+                                                    <button data-bs-toggle="modal" data-bs-target="#viewDetailsBill" v-on:click="viewDetails(value.id)" class="btn btn-primary radius-20" type="button">Chi Tiết <i class="fadeIn animated bx bx-show"></i></button>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-success"><i class="bx bxs-edit"></i></button>
-                                                    <button class="btn btn-danger"><i class="bx bxs-trash"></i></button>
+                                                    <button v-on:click="xoaBill(value)" class="btn btn-danger">Xóa  <i class="bx bxs-trash"></i></button>
                                                 </td>
                                             </tr>
                                         </template>
@@ -125,6 +129,18 @@
                             .get('/admin/bill-infor/viewDetailsBill/' + id)
                             .then((res) => {
                                 this.list_chi_tiet = res.data.dataDetailsBill;
+                            });
+                    },
+                    xoaBill(v) {
+                        axios
+                            .post('/admin/bill-infor/deleteBill',v)
+                            .then((res) => {
+                                if(res.data.statusDeleteBill) {
+                                    toastr.success("Xóa Hóa Đơn Thành Công!");
+                                    this.loadDataBill();
+                                } else {
+                                    toastr.error("Có Lỗi! Vui Lòng Kiểm Tra Lại");
+                                }
                             });
                     },
                 },

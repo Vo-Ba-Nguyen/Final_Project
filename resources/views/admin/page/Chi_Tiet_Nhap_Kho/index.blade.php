@@ -69,9 +69,6 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="form-group">
-                            <textarea class="form-control" aria-label="With textarea" spellcheck="false" style="height: 100px" placeholder="Nhập Vào Ghi Chú Đơn Hàng"></textarea>
-                        </div>
                     </div>
                     <div class="card-footer">
                         <button v-on:click='nhapKho(id_hoa_don)' class="btn btn-primary text-right" style="width: 180px">Nhập Kho</button>
@@ -169,6 +166,8 @@
                             .then((res) => {
                                 if(res.data.status){
                                     toastr.success("Đã nhập kho thành công!");
+                                    this.list_chi_tiet ='';
+                                    this.tong_tien = 0;
                                 } else{
                                     toastr.error("Có lỗi! Vui lòng kiểm tra lại")
                                 }

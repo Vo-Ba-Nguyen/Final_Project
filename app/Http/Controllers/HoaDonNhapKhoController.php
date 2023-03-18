@@ -30,4 +30,13 @@ class HoaDonNhapKhoController extends Controller
         'dataDetailsBill' => $bill,
     ]);
    }
+
+   public function deleteBill(Request $request) {
+
+    Hoa_Don_Nhap_Kho::where('id', $request->id)->first()->delete();
+
+    return response()->json([
+        'statusDeleteBill' => true,
+    ]);
+   }
 }
