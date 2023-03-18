@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChiTietNhapKhoController;
+use App\Http\Controllers\DangKyAdminController;
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\HangController;
 use App\Http\Controllers\HoaDonNhapKhoController;
@@ -66,3 +67,15 @@ Route::get('/admin/bill-infor/index',[ HoaDonNhapKhoController::class, 'index'])
 Route::get('/admin/bill-infor/getDataBill',[ HoaDonNhapKhoController::class, 'getDataBill']);
 Route::get('/admin/bill-infor/viewDetailsBill/{id}',[ HoaDonNhapKhoController::class, 'viewDetailsBill']);
 Route::post('/admin/bill-infor/deleteBill', [ HoaDonNhapKhoController::class, 'deleteBill']);
+
+
+// Register for Admin
+Route::get('/admin/register/index', [DangKyAdminController::class, 'registerView']);
+Route::post('/admin/register/createNewAccount', [DangKyAdminController::class, 'createNewAccount']);
+// Login for Admin
+Route::get('/admin/login/index', [DangKyAdminController::class, 'loginView']);
+Route::post('/admin/login/index', [DangKyAdminController::class, 'login']);
+
+
+// HomePage
+Route::get('/homepage/index', [DangKyAdminController::class, 'homePage']);

@@ -42,7 +42,12 @@
                                                 <th class="text-center">@{{key + 1}}</th>
                                                 <td>@{{value.tong_so_luong_san_pham}}</td>
                                                 <td>@{{value.tong_tien}}</td>
-                                                <td>@{{value.hinh_thuc_thanh_toan}}</td>
+                                                <td>
+                                                    <select class="form-select" aria-label="Disabled select example">
+                                                        <option>Tiền Mặt $</option>
+                                                        <option>Chuyển Khoản </option> <i class="lni lni-credit-cards"></i>
+                                                    </select>
+                                                </td>
                                                 <td>@{{value.tinh_trang_thanh_toan}}</td>
                                                 <td>@{{value.created_at}}</td>
                                                 <td>
