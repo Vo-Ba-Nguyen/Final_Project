@@ -14,12 +14,12 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('dang__ky__admins')->delete();
+        DB::table('dang_ky_admins')->delete();
 
         // Reset id về lại 1
-        DB::table('dang__ky__admins')->truncate();
+        DB::table('dang_ky_admins')->truncate();
 
-        DB::table('dang__ky__admins')->insert([
+        DB::table('dang_ky_admins')->insert([
             [
                 'ho_va_ten'         => "Admin",
                 'email'             => "admin@master.com",

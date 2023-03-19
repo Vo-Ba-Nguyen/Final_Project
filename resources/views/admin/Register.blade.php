@@ -23,7 +23,7 @@
                                 <div class="form-group">
                                     <label class="col-form-label">Số Điện Thoại</label>
                                     <input class="form-control" type="number" required="" placeholder="Nhập Vào SĐT Của Bạn">
-                            </div>
+                                </div>
                             <div class="form-group">
                                 <label class="col-form-label">Password</label>
                                 <div class="form-input position-relative">

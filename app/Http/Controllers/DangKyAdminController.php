@@ -57,8 +57,4 @@ class DangKyAdminController extends Controller
         ]);
     }
 
-    public function homePage(){
-
-        return view('Home.Share.master');
-    }
 }
