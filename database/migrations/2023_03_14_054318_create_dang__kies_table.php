@@ -13,16 +13,16 @@ class CreateDangKiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('dang__kies', function (Blueprint $table) {
+        Schema::create('dang_kies', function (Blueprint $table) {
             $table->id();
-            // $table->string("ho_va_ten");
-            // $table->string("email");
-            // $table->string("so_dien_thoai");
-            // $table->string("password");
-            // $table->string("ngay_sinh");
-            // $table->string("dia_chi");
-            // $table->integer("is_block");
-            // $table->integer("is_email");
+            $table->string("ho_va_ten");
+            $table->integer("gioi_tinh");
+            $table->string("email");
+            $table->string("so_dien_thoai");
+            $table->string("password");
+            $table->string("ngay_sinh");
+            $table->string("dia_chi");
+            $table->integer("is_block");
             $table->timestamps();
         });
     }

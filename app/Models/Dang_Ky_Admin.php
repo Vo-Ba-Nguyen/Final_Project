@@ -10,7 +10,7 @@ class Dang_Ky_Admin extends Authenticatable
 {
     use HasFactory;
 
-    protected $table = 'dang__ky__admins';
+    protected $table = 'dang_ky_admins';
 
     protected $fillable = [
         "ho_va_ten",

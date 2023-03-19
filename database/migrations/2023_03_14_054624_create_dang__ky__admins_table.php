@@ -13,7 +13,7 @@ class CreateDangKyAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('dang__ky__admins', function (Blueprint $table) {
+        Schema::create('dang_ky_admins', function (Blueprint $table) {
             $table->id();
             $table->string("ho_va_ten");
             $table->string("email");

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChiTietNhapKhoController;
 use App\Http\Controllers\DangKyAdminController;
+use App\Http\Controllers\DangKyController;
 use App\Http\Controllers\DanhMucController;
 use App\Http\Controllers\HangController;
 use App\Http\Controllers\HoaDonNhapKhoController;
@@ -78,4 +79,5 @@ Route::post('/admin/login/index', [DangKyAdminController::class, 'login']);
 
 
 // HomePage
-Route::get('/homepage/index', [DangKyAdminController::class, 'homePage']);
+Route::get('/homepage/index', [DangKyController::class, 'homePage']);
+Route::get('/homepage/register', [DangKyController::class, 'register']);
