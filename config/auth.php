@@ -45,6 +45,11 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'customers' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
+
     ],
 
     /*
@@ -73,6 +78,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Dang_Ky_Admin::class,
+        ],
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Dang_Ky::class,
         ],
 
         // 'users' => [

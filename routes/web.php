@@ -81,3 +81,6 @@ Route::post('/admin/login/index', [DangKyAdminController::class, 'login']);
 // HomePage
 Route::get('/homepage/index', [DangKyController::class, 'homePage']);
 Route::get('/homepage/register', [DangKyController::class, 'register']);
+Route::get('/homepage/login', [DangKyController::class, 'loginView']);
+Route::post('/homepage/createAccount', [DangKyController::class, 'createAccountUser']);
+Route::post('/homepage/login', [DangKyController::class, 'login']);
