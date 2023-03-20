@@ -22,7 +22,7 @@ class CreateDangKiesTable extends Migration
             $table->string("password");
             $table->string("ngay_sinh");
             $table->string("dia_chi");
-            $table->integer("is_block");
+            $table->integer("is_block")->default(0);
             $table->timestamps();
         });
     }
