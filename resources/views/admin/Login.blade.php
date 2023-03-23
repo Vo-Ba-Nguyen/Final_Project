@@ -7,8 +7,8 @@
     <meta name="description" content="Cuba admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Cuba admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="/html/assets/images/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="/html/assets/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="/html/assets/images/user.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="/html/assets/images/user.jpg" type="image/x-icon">
     <title>Cuba - Premium Admin Template</title>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@
             <div class="col-xl-7 p-0">
                 <div class="login-card">
                     <div>
-                        <div><a class="logo text-start" href="index.html"><img class="img-fluid for-light" src="/html/assets/images/logo/login.png" alt="looginpage"><img class="img-fluid for-dark" src="/html/assets/images/logo/logo_dark.png" alt="looginpage"></a></div>
+                        <div><a class="logo text-start" href="index.html"><img class="img-fluid for-light" src="/html/assets/images/user.jpg" alt="looginpage"><img class="img-fluid for-dark" src="/html/assets/images/logo/logo_dark.png" alt="looginpage"></a></div>
                         <div class="login-main">
                             <h4>Sign in to account</h4>
                             <p>Enter your email & password to login</p>
@@ -73,28 +73,28 @@
             </div>
         </div>
     </div>
-      <!-- latest jquery-->
-      <script src="/html/assets/js/jquery-3.5.1.min.js"></script>
-      <!-- Bootstrap js-->
-      <script src="/html/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-      <!-- feather icon js-->
-      <script src="/html/assets/js/icons/feather-icon/feather.min.js"></script>
-      <script src="/html/assets/js/icons/feather-icon/feather-icon.js"></script>
-      <!-- scrollbar js-->
-      <!-- Sidebar jquery-->
-      <script src="/html/assets/js/config.js"></script>
-      <!-- Plugins JS start-->
-      <!-- Plugins JS Ends-->
-      <!-- Theme js-->
-      <script src="/html/assets/js/script.js"></script>
-      <!-- login js-->
-      <!-- Plugin used-->
+    <!-- latest jquery-->
+    <script src="/html/assets/js/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap js-->
+    <script src="/html/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- feather icon js-->
+    <script src="/html/assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="/html/assets/js/icons/feather-icon/feather-icon.js"></script>
+    <!-- scrollbar js-->
+    <!-- Sidebar jquery-->
+    <script src="/html/assets/js/config.js"></script>
+    <!-- Plugins JS start-->
+    <!-- Plugins JS Ends-->
+    <!-- Theme js-->
+    <script src="/html/assets/js/script.js"></script>
+    <!-- login js-->
+    <!-- Plugin used-->
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.2/axios.min.js" integrity="sha512-NCiXRSV460cHD9ClGDrTbTaw0muWUBf/zB/yLzJavRsPNUl9ODkUVmUHsZtKu17XknhsGlmyVoJxLg/ZQQEeGA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"></script>
-     <script>
+    <script>
         new Vue({
             el       : "#app",
             data     : {
@@ -119,8 +119,8 @@
                 }
             },
         });
-  </script>
-  </body>
+    </script>
+</body>
 
 
 

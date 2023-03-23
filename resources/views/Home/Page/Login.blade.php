@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/html/assets/images/user.jpg" type="image/x-icon">
-    <title>Đăng Ký Tài Khoản</title>
+    <title>Đăng Nhập</title>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap" rel="stylesheet">
@@ -58,6 +58,8 @@
                                 <div class="show-hide"><span class="show"></span></div>
                             </div>
                     </div>
+
+
                     <div class="form-group mb-0">
                         <div class="checkbox p-0">
                         <input id="checkbox1" type="checkbox">
@@ -112,7 +114,7 @@
                                     window.location.href = "/homepage/index";
                                     toastr.success("Đăng Nhập Thành Công!");
                                 } else {
-                                    toastr.error("Có Lỗi! Vui lòng nhập lại");
+                                    toastr.error("Tài Khoản Hoặc Mật Khẩu không đúng! Vui Lòng Nhập lại");
                                 }
                             })
                             .catch((res) => {

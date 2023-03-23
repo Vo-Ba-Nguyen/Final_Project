@@ -4,8 +4,8 @@
               <div class="col-md-3 col-sm-6 col-6">
                 <div class="login-register-area">
                   <ul>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Register</a></li>
+                    <li><a href="/homepage/login">Login</a></li>
+                    <li><a href="/homepage/register">Register</a></li>
                   </ul>
                 </div>
               </div>

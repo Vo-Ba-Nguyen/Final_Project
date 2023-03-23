@@ -1,4 +1,4 @@
-<link rel="icon" href="/rocker/assets/images/favicon-32x32.png" type="image/png" />
+<link rel="icon" href="/html/assets/images/user.jpg" type="image/png" />
 	<!--plugins-->
 	<link href="/rocker/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet"/>
 	<link href="/rocker/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
