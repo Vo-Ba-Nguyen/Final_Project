@@ -84,3 +84,10 @@ Route::get('/homepage/register', [DangKyController::class, 'register']);
 Route::get('/homepage/login', [DangKyController::class, 'loginView']);
 Route::post('/homepage/createAccount', [DangKyController::class, 'createAccountUser']);
 Route::post('/homepage/login', [DangKyController::class, 'login']);
+
+
+//Cart
+Route::get('/homepage/cart', [DangKyController::class, 'cartView']);
+
+//FavouriteList
+Route::get('/homepage/favouriteList', [DangKyController::class, 'favouriteListView']);

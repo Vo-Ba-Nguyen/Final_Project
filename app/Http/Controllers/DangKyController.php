@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\RegisterUserRequest;
 use App\Models\Dang_Ky;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class DangKyController extends Controller
 
     public function homePage(){
 
-        return view('Home.Share.master');
+        return view('Home.Page.homePage');
     }
 
     public function register(){
@@ -37,7 +38,7 @@ class DangKyController extends Controller
         ]);
     }
 
-    public function login(Request $request){
+    public function login(LoginUserRequest $request){
 
         $dataUser['email'] = $request->email;
         $dataUser['password'] = $request->password;
@@ -59,5 +60,14 @@ class DangKyController extends Controller
                 'status'    =>  false,
             ]);
         }
+    }
+
+    public function cartView(){
+
+        return view('Home.Page.cart');
+    }
+
+    public function favouriteListView(){
+        return view('Home.Page.favoritesList');
     }
 }

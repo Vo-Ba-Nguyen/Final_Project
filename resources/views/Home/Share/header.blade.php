@@ -13,19 +13,7 @@
                   <nav id="primary-menu">
                     <ul class="main-menu">
                       <li class="current">
-                        <a class="active" href="index.html">Home</a>
-                        <ul class="dropdown">
-                          <li>
-                            <a class="active" href="index.html">Home One</a>
-                          </li>
-                          <li><a href="index-2.html">Home Two</a></li>
-                          <li>
-                            <a href="index-boxed-01.html">Home Three (Boxed)</a>
-                          </li>
-                          <li>
-                            <a href="index-boxed-02.html">Home Four (Boxed)</a>
-                          </li>
-                        </ul>
+                        <a class="active" href="/homepage/index">Home</a>
                       </li>
                       <li class="mega-parent pos-rltv">
                         <a href="shop.html">Man</a>
